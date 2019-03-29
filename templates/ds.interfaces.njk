@@ -1,8 +1,10 @@
 {% for dc in dataclasses  %}export interface I{{ dc.name }} {
   _key?: {{ dc.keyType }};{% for attr in dc.attributes %}
   {{ attr.name }}: {{ attr.type }};{% endfor %}
-  save(): void;
-  delete(): void;{% for m in dc.methods %}{% if m.applyTo === 'entity' %}
+  save(): Promise<I{{ dc.name }}>;
+  recompute(): Promise<I{{ dc.name }}>;
+  fetch(options?: any): Promise<I{{ dc.name }}>;
+  delete(): Promise<void>;{% for m in dc.methods %}{% if m.applyTo === 'entity' %}
   {{ m.name }}(): void;{% endif %}{% endfor %}
 }
 {% endfor %}
