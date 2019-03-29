@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const { getInterfaces } = require('..');
+
+(async () => {
+  const str = await getInterfaces(...process.argv.slice(2));
+  // eslint-disable-next-line no-console
+  console.log(str);
+})();
+
+
