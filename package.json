@@ -1,6 +1,6 @@
 {
   "name": "ds-interfaces",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Outputs interfaces from a wakanda catalog",
   "main": "./src/index.js",
   "scripts": {
@@ -54,7 +54,9 @@
     }
   },
   "files": [
-    "src/**/*.js"
+    "src/**/*.js",
+    "templates/*",
+    "bin/*"
   ],
   "dependencies": {
     "nunjucks": "^3.2.0",
