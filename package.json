@@ -12,7 +12,10 @@
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "release:major": "release-it major",
+    "release:minor": "release-it minor",
+    "release:patch": "release-it patch"
   },
   "repository": {
     "url": "https://github.com/midrissi/ds-interfaces.git",
@@ -42,7 +45,8 @@
     "husky": "^3.0.9",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "release-it": "^12.4.3"
   },
   "optionalDependencies": {
     "fsevents": "^2.1.1"
