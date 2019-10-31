@@ -11,7 +11,7 @@ let tpl;
 function transform(attr, dataClasses) {
   const res = attr;
 
-  switch(true) {
+  switch (true) {
     case attr.type === 'blob':
     case attr.type === 'image':
       return false;
@@ -25,8 +25,7 @@ function transform(attr, dataClasses) {
       res.type = `I${res.type}`;
       break;
     case attr.kind === 'relatedEntities': {
-      const dataClass = dataClasses
-        .find(one => one.collectionName === attr.type);
+      const dataClass = dataClasses.find(one => one.collectionName === attr.type);
 
       res.type = `I${dataClass.name}[]`;
       break;
@@ -47,7 +46,7 @@ function transform(attr, dataClasses) {
 }
 
 exports.getInterfaces = async (url = 'http://localhost:8081/rest/$catalog/$all') => {
-  if(!tpl) {
+  if (!tpl) {
     try {
       const tplPath = resolve(__dirname, '../templates/ds.interfaces.njk');
       tpl = await readFile$(tplPath, { encoding: 'utf8' });
@@ -60,19 +59,15 @@ exports.getInterfaces = async (url = 'http://localhost:8081/rest/$catalog/$all')
       url,
       json: true,
     });
-    const dataclasses = result.body.dataClasses.map((dc) => ({
+    const dataclasses = result.body.dataClasses.map(dc => ({
       ...dc,
       keyType: !(Array.isArray(dc.key) && dc.key[0])
         ? 'string'
-        : transform(
-          dc.attributes.find(attr => attr.name === dc.key[0].name),
-          result.body.dataClasses
-        ).type,
-      attributes: dc.attributes.map(attr => transform(attr, result.body.dataClasses))
-        .filter(Boolean)
-    }))
+        : transform(dc.attributes.find(attr => attr.name === dc.key[0].name), result.body.dataClasses).type,
+      attributes: dc.attributes.map(attr => transform(attr, result.body.dataClasses)).filter(Boolean),
+    }));
     return renderString(tpl, { dataclasses });
-  } catch(e) {
+  } catch (e) {
     return '';
   }
 };
