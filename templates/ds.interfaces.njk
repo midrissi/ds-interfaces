@@ -1,8 +1,8 @@
-import { Entity, Collection } from 'wakanda-client';
+import { Entity, Collection, Media } from 'wakanda-client';
 
 {% for dc in dataclasses  %}export interface I{{ dc.name }} extends Entity{% raw %} {{% endraw %}{% for attr in dc.attributes %}
   {{ attr.name }}: {{ attr.type | safe }};{% endfor %}{% for m in dc.methods %}{% if m.applyTo === 'entity' %}
-  {{ m.name }}(): void;{% endif %}{% endfor %}
+  {{ m.name }}(): any;{% endif %}{% endfor %}
 }
 
 {% endfor %}

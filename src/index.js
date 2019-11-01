@@ -14,7 +14,8 @@ function transform(attr, dataClasses) {
   switch (true) {
     case attr.type === 'blob':
     case attr.type === 'image':
-      return false;
+      res.type = 'Media';
+      break;
     case attr.type === 'bool':
       res.type = 'boolean';
       break;
@@ -30,6 +31,9 @@ function transform(attr, dataClasses) {
       res.type = `Collection<I${dataClass.name}>`;
       break;
     }
+    case attr.type === 'date':
+      res.type = 'Date';
+      break;
     case attr.type === 'byte':
     case attr.type === 'long':
     case attr.type === 'long64':
