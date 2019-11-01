@@ -27,7 +27,7 @@ function transform(attr, dataClasses) {
     case attr.kind === 'relatedEntities': {
       const dataClass = dataClasses.find(one => one.collectionName === attr.type);
 
-      res.type = `I${dataClass.name}[]`;
+      res.type = `Collection<I${dataClass.name}>`;
       break;
     }
     case attr.type === 'byte':

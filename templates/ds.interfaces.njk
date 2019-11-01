@@ -1,13 +1,7 @@
-interface IDataClass<T> {
-  save(): Promise<T>;
-  recompute(): Promise<T>;
-  fetch(options?: any): Promise<T>;
-  delete(): Promise<void>;
-}
+import { Entity, Collection } from 'wakanda-client';
 
-{% for dc in dataclasses  %}export interface I{{ dc.name }} extends IDataClass<I{{ dc.name }}> {
-  _key?: {{ dc.keyType }};{% for attr in dc.attributes %}
-  {{ attr.name }}: {{ attr.type }};{% endfor %}{% for m in dc.methods %}{% if m.applyTo === 'entity' %}
+{% for dc in dataclasses  %}export interface I{{ dc.name }} extends Entity{% raw %} {{% endraw %}{% for attr in dc.attributes %}
+  {{ attr.name }}: {{ attr.type | safe }};{% endfor %}{% for m in dc.methods %}{% if m.applyTo === 'entity' %}
   {{ m.name }}(): void;{% endif %}{% endfor %}
 }
 
