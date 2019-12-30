@@ -37,20 +37,20 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
-    "coveralls": "^3.0.7",
-    "eslint": "^6.6.0",
+    "coveralls": "^3.0.9",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-plugin-import": "^2.18.2",
-    "husky": "^3.0.9",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.19.1",
+    "husky": "^3.1.0",
     "mocha": "^6.2.2",
-    "nodemon": "^1.19.4",
-    "nyc": "^14.1.1",
+    "nodemon": "^2.0.2",
+    "nyc": "^15.0.0",
     "prettier": "^1.19.1",
     "release-it": "^12.4.3"
   },
   "optionalDependencies": {
-    "fsevents": "^2.1.1"
+    "fsevents": "^2.1.2"
   },
   "engines": {
     "node": ">= 8.0.0"
