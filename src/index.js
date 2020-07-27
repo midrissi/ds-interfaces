@@ -26,7 +26,7 @@ function transform(attr, dataClasses) {
       res.type = `I${res.type}`;
       break;
     case attr.kind === 'relatedEntities': {
-      const dataClass = dataClasses.find(one => one.collectionName === attr.type);
+      const dataClass = dataClasses.find((one) => one.collectionName === attr.type);
 
       res.type = `Collection<I${dataClass.name}>`;
       break;
@@ -63,12 +63,15 @@ exports.getInterfaces = async (url = 'http://localhost:8081/rest/$catalog/$all')
       url,
       json: true,
     });
-    const dataclasses = result.body.dataClasses.map(dc => ({
+    const dataclasses = result.body.dataClasses.map((dc) => ({
       ...dc,
       keyType: !(Array.isArray(dc.key) && dc.key[0])
         ? 'string'
-        : transform(dc.attributes.find(attr => attr.name === dc.key[0].name), result.body.dataClasses).type,
-      attributes: dc.attributes.map(attr => transform(attr, result.body.dataClasses)).filter(Boolean),
+        : transform(
+          dc.attributes.find((attr) => attr.name === dc.key[0].name),
+          result.body.dataClasses,
+        ).type,
+      attributes: dc.attributes.map((attr) => transform(attr, result.body.dataClasses)).filter(Boolean),
     }));
     return renderString(tpl, { dataclasses });
   } catch (e) {

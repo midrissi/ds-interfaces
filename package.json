@@ -10,7 +10,7 @@
     "test": "nyc --reporter=html --reporter=text mocha --exit --reporter spec ./__tests__/**/*.test.js",
     "prepublishOnly": "npm test",
     "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
+    "version": "git add -A src",
     "postversion": "git push && git push --tags",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "release:major": "release-it major",
