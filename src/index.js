@@ -49,7 +49,7 @@ function transform(attr, dataClasses) {
   return res;
 }
 
-exports.getInterfaces = async (url = 'http://localhost:8081/rest/$catalog/$all') => {
+exports.getInterfaces = async (url = 'http://localhost:8081/rest') => {
   if (!tpl) {
     try {
       const tplPath = resolve(__dirname, '../templates/ds.interfaces.njk');
@@ -60,7 +60,7 @@ exports.getInterfaces = async (url = 'http://localhost:8081/rest/$catalog/$all')
   }
   try {
     const result = await request$({
-      url,
+      url: `${url}/$catalog/$all`,
       json: true,
     });
     const dataclasses = result.body.dataClasses.map((dc) => ({
