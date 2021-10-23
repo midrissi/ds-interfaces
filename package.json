@@ -15,7 +15,8 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "release:major": "release-it major",
     "release:minor": "release-it minor",
-    "release:patch": "release-it patch"
+    "release:patch": "release-it patch",
+    "prepare": "husky install"
   },
   "repository": {
     "url": "https://github.com/midrissi/ds-interfaces.git",
@@ -36,30 +37,23 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "coveralls": "^3.1.0",
-    "eslint": "^7.15.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-import": "^2.22.1",
-    "husky": "^4.3.4",
-    "mocha": "^8.2.1",
-    "nodemon": "^2.0.6",
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
+    "chai": "^4.3.4",
+    "coveralls": "^3.1.1",
+    "eslint": "^8.1.0",
+    "husky": "^7.0.4",
+    "mocha": "^9.1.3",
+    "nodemon": "^2.0.14",
     "nyc": "^15.1.0",
-    "prettier": "^2.2.1",
-    "release-it": "^14.2.2"
+    "prettier": "^2.4.1",
+    "release-it": "^14.11.6"
   },
   "optionalDependencies": {
-    "fsevents": "^2.2.1"
+    "fsevents": "^2.3.2"
   },
   "engines": {
     "node": ">= 8.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm test",
-      "pre-push": "npm test"
-    }
   },
   "files": [
     "src/**/*.js",
@@ -67,7 +61,7 @@
     "bin/*"
   ],
   "dependencies": {
-    "nunjucks": "^3.2.2",
+    "nunjucks": "^3.2.3",
     "request": "^2.88.2"
   },
   "bin": {
